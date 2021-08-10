@@ -1,0 +1,91 @@
+<div>
+    <h1 style="text-align: center;
+     margin-top: 40px; background-color:
+      green; padding-bottom: 20px;
+      color: whitesmoke;"> Add-flight</h1>
+</div>
+
+<div style="margin-top: 90px;">
+
+
+<div style="margin: auto;
+width: 50%;
+border: 3px solid green;
+padding: 10px;
+background-color: azure;
+ "
+ >
+<ul>
+    <li>(addFlightForm valid) : {{addFlightForm.valid}}</li>
+    <li>(length): {{addFlightForm.controls.flightNumber.errors}}</li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+
+    <form action="" style="margin-left: 100px;" [formGroup]="addFlightForm" (ngSubmit)="saveFlight()">
+        <ul style="list-style: none;">
+            <li>
+                <label for="" >Flight Number : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="number" name="" id="" formControlName="flightNumber">
+                <p *ngIf="addFlightForm.controls.flightNumber.dirty && addFlightForm.controls.flightNumber.errors">
+                    <span *ngIf="addFlightForm.controls.flightNumber.errors.required">Field Can't Be Empty</span>
+                    <span *ngIf="addFlightForm.controls['flightNumber'].hasError('minLength')">Length Should be in between 4 to 6</span>
+                </p>
+                
+            </li><br>
+            <li>
+                <label for="">Airline : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" name="" id="" formControlName="flightCompany" >
+            </li><br>
+            <li>
+                <label for="">FromToDestination: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" name="" id="" formControlName="fromToDestination">
+            </li><br>
+            <li>
+                <label for="">From: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" name="" id="" formControlName="from">
+            </li><br>
+            <li>
+                <label for="">Destinantion: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" name="" id="" formControlName="destinanton">
+            </li><br>
+            <li>
+                <label for="">start Time: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="datetime-local" name="" id="" formControlName="start">
+            </li><br>
+            <li>
+                <label for="">End Time: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="datetime-local" name="" id="" formControlName="end">
+            </li><br>
+            <li>
+                <label for="">Number Of Business Class Seat: &nbsp;&nbsp;&nbsp;</label>
+                <input type="number" name="" id="" formControlName="businessSeat">
+            </li><br>
+            <li>
+                <label for="">Number Of Economy Class Seat: &nbsp;&nbsp;</label>
+                <input type="number" name="" id="" formControlName="economySeat">
+            </li><br>
+            <li>
+                <label for="">Ticket Cost: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="number" name="" id="" formControlName="cost">
+            </li><br>
+            <li>
+                <div class="form-check form-switch">
+                    <input  formControlName="block" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Click For Blocking</label>
+                  </div>
+            </li><br>
+        </ul>
+        <button type="button"
+         class="btn btn-outline-success" 
+         style="margin-left: 130px;"
+          (click)="goAdminHome()"
+          [routerLink]="['/','admin']">AdminHome</button>&nbsp;
+        <button type="button" [disabled]="addFlightForm.invalid" class="btn btn-outline-success" (click)="saveFlight()">Add Flight</button>
+    </form>
+    <!--  -->
+</div>
+
+</div>

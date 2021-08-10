@@ -1,0 +1,14 @@
+.main{
+    margin-left: 90px;
+    background-image: url('../../img/background.jpg'); 
+    height: 200%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: px;
+}
+p{
+    text-align: center;
+}

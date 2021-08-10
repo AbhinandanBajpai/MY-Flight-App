@@ -1,0 +1,184 @@
+<div style="margin-right: 400px;  border: 1px solid green;
+
+">
+<h1><i><span style="text-align: center; margin-left: 500px;">Welcome : {{name}}</span></i>
+</h1>
+
+ 
+
+    <form *ngIf="!downloadableTicket"  [formGroup]="ticketForm" action="" style="margin-left: 100px; background-color: azure; padding-top: 100px; padding-bottom: 300px;"  >
+        <!-- #ff [formGroup]="homeForm" (ngSubmit)="doSearch()" -->
+        
+
+        <ul>
+            <li>
+                FlightFrom : {{loginuser.from}}
+            </li>
+            <li>Fligt Destination : {{loginuser.destinanton}}</li>
+            <li>Flight Name : {{loginuser.flightCompany}}</li>
+            <li>Take Off : {{loginuser.start}}</li>
+            <li>Total Ampunt To Be Paid: {{numberOfPass*loginuser.cost}}</li>
+            <li>Coupan Applied : {{coupon}}</li>
+            <!-- {{ticketForm.invalid"}}
+            <li>{{ticketForm.valid}}</li>
+            <li>{{ticketForm.controls}}</li> -->
+        </ul>
+
+
+        <ul style="list-style: none;">
+            <li>
+                <label for="" >Contact Number :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input #ff formControleName="contactNumber" [ngModelOptions]="{standalone: true}" [(ngModel)]="contact" type="text"  id="">
+                <!-- {{flyingFrom}}  formControleName="flyingFrom" [ngModelOptions]="{standalone: true}" [(ngModel)]="flyingFrom"-->
+            </li><br>
+            <li>
+                <label for=""> :  Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input formControleName="email" type="email" name="" id="" [ngModelOptions]="{standalone: true}" [(ngModel)]="bookemail" >
+                <!-- [ngModelOptions]="{standalone: true}" [(ngModel)]="flyingTo"  formControleName="flyingTo" -->
+                
+            </li><br>
+            <li>
+                <label for=""> Number Of Seats &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input formControleName="numberOfseats"  type="number" name="" id="" [ngModelOptions]="{standalone: true}" [(ngModel)]="numberOfPass" >
+                <!-- [ngModelOptions]="{standalone: true}" [(ngModel)]="flyingTo"  formControleName="flyingTo" -->
+                
+            </li><br>
+{{coupon}}
+            <li>
+                <label  (click)="valueCoupon()" [ngModelOptions]="{standalone: true}" name="coupon" [(ngModel)]="coupon" for="cars">ApplyCoopan:</label>
+                <select name="cars" id="cars">
+                  <option value="volvo">HDFC500</option>
+                  <option value="saab">ICICI450</option>
+                  <option value="opel">AXIS400</option>
+                  <option value="audi">SBI100</option>
+                </select>
+            </li>
+        
+        </ul>
+        <button type="button"
+         class="btn btn-outline-success" 
+         style="margin-left: 130px;"
+        
+          [routerLink]="['/','home']">Search Again</button>&nbsp;
+     
+        <button type="button"  style="margin-left: 130px;"  (click)="onBook()" class="btn btn-outline-success" >Continue</button>
+        <!--  style="margin-left: 130px;"(click)="doSearch()"  [disabled]="ticketForm.invalid"-->
+
+
+        <br>
+        
+        
+    </form>
+
+
+<div *ngIf="!downloadableTicket && paymentFormFlag" class="row">
+  <div class="col-75">
+    <div class="container">
+      <form action="/action_page.php">
+      
+        <div class="row">
+          <div class="col-50">
+            <h3>Billing Address</h3>
+            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+            <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+            <label for="email"><i class="fa fa-envelope"></i> Email</label>
+            <input type="text" id="email" name="email" placeholder="john@example.com">
+            <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+            <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
+            <label for="city"><i class="fa fa-institution"></i> City</label>
+            <input type="text" id="city" name="city" placeholder="New York">
+
+            <div class="row">
+              <div class="col-50">
+                <label for="state">State</label>
+                <input type="text" id="state" name="state" placeholder="NY">
+              </div>
+              <div class="col-50">
+                <label for="zip">Zip</label>
+                <input type="text" id="zip" name="zip" placeholder="10001">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-50">
+            <h3>Payment</h3>
+            <label for="fname">Accepted Cards</label>
+            <div class="icon-container">
+              <i class="fa fa-cc-visa" style="color:navy;"></i>
+              <i class="fa fa-cc-amex" style="color:blue;"></i>
+              <i class="fa fa-cc-mastercard" style="color:red;"></i>
+              <i class="fa fa-cc-discover" style="color:orange;"></i>
+            </div>
+            <label for="cname">Name on Card</label>
+            <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+            <label for="ccnum">Credit card number</label>
+            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+            <label for="expmonth">Exp Month</label>
+            <input type="text" id="expmonth" name="expmonth" placeholder="September">
+            <div class="row">
+              <div class="col-50">
+                <label for="expyear">Exp Year</label>
+                <input type="text" id="expyear" name="expyear" placeholder="2018">
+              </div>
+              <div class="col-50">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" placeholder="352">
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <label>
+          <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+        </label>
+        <input  (click)="onPayment()" type="submit" value="Continue to checkout" class="btn">
+      </form>
+    </div>
+  </div>
+  <div class="col-25">
+  </div>
+</div>
+</div>
+
+
+<div *ngIf="downloadableTicket" id="table">
+    <p>name : {{name}}</p>
+<table >
+    <tr>
+      <th>AirLine</th>
+      <th>From</th>
+      <th>Destination</th>
+    </tr>
+    <tr>
+      <td>{{loginuser.flightCompany}}</td>
+      <td>{{loginuser.from}}</td>
+      <td>{{loginuser.destinanton}}</td>
+    </tr>
+    <tr>
+      <td>Take Off Time</td>
+      <td>Landing Time</td>
+      <td>PNR</td>
+    </tr>
+    <tr>
+      <td>{{loginuser.start}}</td>
+      <td>20:20:20</td>
+      <td>1234568</td>
+    </tr>
+    <tr>
+      <td>Amount To Be Paid</td>
+      <td>Email</td>
+      <td>Contact</td>
+    </tr>
+    <tr>
+      <td>{{numberOfPass*loginuser.cost}}</td>
+      <td>{{bookemail}}</td>
+      <td>{{contact}}</td>
+    </tr>
+  </table>
+
+
+</div>
+<input *ngIf="downloadableTicket" (click)="download()" type="submit" value="Download Ticket" class="btn">
+<input *ngIf="downloadableTicket" (click)="onCancel()" type="submit" value="Cancel Ticket" style="background-color: red;" class="btn btn-danger">
+<input *ngIf="downloadableTicket"  (click)="onGoTicketHistory()" type="submit" value="Ticket History" style="background-color: red;" class="btn btn-danger">
+<!-- [routerLink]="['/','ticketbook','/ticketHistory']" -->

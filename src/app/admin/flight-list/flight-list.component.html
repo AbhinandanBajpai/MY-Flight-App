@@ -1,0 +1,50 @@
+<button type="button"
+         class="btn btn-outline-success"
+          (click)="goAdminHome()"
+          [routerLink]="['/','admin']">AdminHome</button>
+<div ></div>
+<div class="table">    
+<table style="background-color: azure;"> 
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>flightNumber</th>
+            <th>flightCompany</th>
+            <th>fromToDestination</th>
+            <th>From</th>
+            <th>Destination</th>
+            <th>Departing</th>
+            <th>ENd</th>
+            <th>BusinessClass</th>
+            <th>EconomyClass</th>
+            <th>Cost</th>
+            <th>Block</th>
+            <th>edit</th>
+            <th>delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor= "let flight of flights | paginate: { itemsPerPage: 6, currentPage: page, totalItems:totalLength }">
+            <td>{{flight.id}}</td>
+            <td>{{flight.flightNumber}}</td>
+            <td>{{flight.flightCompany}}</td>
+            <td>{{flight.fromToDestination}}</td>
+            <td>{{flight.from}}</td>
+            <td>{{flight.destinanton}}</td>
+            <td>{{flight.start}}</td>
+            <td>{{flight.end}}</td>
+            <td>{{flight.businessSeat}}</td>
+            <td>{{flight.economySeat}}</td>
+            <td>{{flight.cost}}</td>
+            <td>
+                <button type="button" (click)="onBlock(flight.id)" class="btn btn-outline-success" [disabled]="!!flight.block">Block</button>
+                <button type="button" (click)="onUnBlock(flight.id)" class="btn btn-outline-success" [disabled]="!flight.block">Unlock</button>
+            </td>
+            <td><button type="button" class="btn btn-outline-success">Edit Flight</button></td>
+            <td><button type="button" class="btn btn-outline-success" (click)="deleteFlight(flight.id)">Delete Flight</button></td>
+        </tr>
+    </tbody>
+</table>
+
+<pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>

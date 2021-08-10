@@ -1,0 +1,114 @@
+<div >
+    <div>
+        <h1 style="text-align: center;
+         margin-top: 40px; background-color:
+          green; padding-bottom: 20px;
+          color: whitesmoke;"> Search Flight</h1>
+    </div>
+    
+    <div style="margin-top: 90px;" >
+    
+    <div style="margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+    background-color: azure;
+     "
+     
+     id="booking"
+     *ngIf="!formShowFlag"
+     >
+    <!-- // -->
+    (valid) : {{ homeForm.controls.valid}} <br>
+    {{homeForm.controls.flyingFrom.dirty}} <br>
+    {{homeForm.controls.flyingFrom.dirty}} <br>
+    {{  homeForm.controls.flyingFrom.errors}}
+        <form  action="" style="margin-left: 100px;" #ff [formGroup]="homeForm" (ngSubmit)="doSearch()" >
+            <ul style="list-style: none;">
+                <li>
+                    <label for="" >Flying From :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input #ff formControleName="flyingFrom" type="text" name="flyingFrom" [ngModelOptions]="{standalone: true}" [(ngModel)]="flyingFrom" id="">
+                    <p *ngIf=" homeForm.controls.flyingFrom.dirty && homeForm.controls.flyingFrom.errors">
+                        <span *ngIf="homeForm.controls.flyingFrom.errors.required">Cant search empty city</span>
+                    </p>
+                    
+                </li><br>
+                <li>
+                    <label for="">Flying To : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input [ngModelOptions]="{standalone: true}" [(ngModel)]="flyingTo"  formControleName="flyingTo" type="text" name="" id=""  >
+                    
+                </li><br>
+                <li>
+                    <label for="">Departing: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input [ngModelOptions]="{standalone: true}" [(ngModel)]="departing"  formControleName="departing" type="date" name="" id="" >
+                     {{departing}}
+                </li><br>
+                <li *ngIf="!!returningFlag">
+                    <label for="">Returning: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input formControleName="returning" type="date" name="" id="" >
+                </li><br>
+         
+                <!-- <li>
+                    <div class="form-check form-switch">
+                        <input   class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Click For Blocking</label>
+                      </div>
+                </li><br> -->
+            </ul>
+            <!-- <button type="button"
+             class="btn btn-outline-success" 
+             style="margin-left: 130px;"
+            
+              [routerLink]="['/','admin']">AdminHome</button>&nbsp; -->
+              <div class="form-check form-switch">
+                <input (click)="onReturn()"  class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Round Trip</label>
+              </div>
+            <button type="button"  class="btn btn-outline-success" (click)="doSearch()">Search Flight</button>
+        </form>
+        <!--   (click)="goAdminHome()" -->
+    </div>
+    
+    
+     <!--  -->
+    <div class="table" *ngIf="!!formShowFlag">    
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>flightNumber</th>
+                    <th>flightCompany</th>
+                    <th>fromToDestination</th>
+                    <th>From</th>
+                    <th>Destination</th>
+                    <th>Departing</th>
+                    <th>End</th>
+                    <th>BusinessClass</th>
+                    <th>EconomyClass</th>
+                    <th>Cost</th>
+                    <th>Book Ticket</th>
+                </tr>
+            </thead>
+            <tbody *ngFor= "let flight of flights | paginate: { itemsPerPage: 6, currentPage: page, totalItems:totalLength }">
+                <tr *ngIf="flight.from == flyingFrom && flight.destinanton == flyingTo" >
+                    <td>{{flight.id}}</td>
+                    <td>{{flight.flightNumber}}</td>
+                    <td>{{flight.flightCompany}}</td>
+                    <td>{{flight.fromToDestination}}</td>
+                    <td>{{flight.from}}</td>
+                    <td>{{flight.destinanton}}</td>
+                    <td>{{flight.start}}</td>
+                    <td>{{flight.end}}</td>
+                    <td>{{flight.businessSeat}}</td>
+                    <td>{{flight.economySeat}}</td>
+                    <td>{{flight.cost}}</td>
+                    <td><button type="button" [disabled]="flight.block" class="btn btn-outline-success" (click)="onTicketBook(flight.id)">Go For Ticket</button></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
+        <button type="button" class="btn btn-outline-success" (click)="onSearchButton2()">Search</button>
+        </div>
+    </div>
+</div>

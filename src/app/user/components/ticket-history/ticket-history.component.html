@@ -1,0 +1,42 @@
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">AirLine</th>
+        <th scope="col">From</th>
+        <th scope="col">State</th>
+        <th scope="col">Destinantion</th>
+        <!-- <th scope="col">Date Of Jpurny</th> -->
+        <th scope="col">PNR</th>
+        <th scope="col">Email</th>
+        <th scope="col">Fair</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Cancel</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let tickHis of th">
+      <tr *ngIf = "tickHis.email == emailloggedIn" >
+        <td>{{tickHis.id}}</td>
+        <td>{{tickHis.airLine}}</td>
+        <td>{{tickHis.from}}</td>
+        <td>{{tickHis.statue}}</td>
+        <td>{{tickHis.destination}}</td>
+        <td>{{tickHis.pnr}}</td>
+        <td>{{tickHis.email}}</td>
+        <td>{{tickHis.fair}}</td>
+        <td><button type="button" class="btn btn-outline-success">Download</button></td>
+        <td><button type="button" (click)="onCancel()" class="btn btn-outline-success">Cancil</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+    <!-- <div ></div>
+        <td>{{tickHis.id}}</td>
+        <td>{{tickHis.airLine}}</td>
+        <td>{{tickHis.from}}</td>
+        <td>{{tickHis.statue}}</td>
+        <td>{{tickHis.destination}}</td>
+        <td>{{tickHis.pnr}}</td>
+        <td>{{tickHis.email}}</td>
+        <td>{{tickHis.fair}}</td> -->
+        
