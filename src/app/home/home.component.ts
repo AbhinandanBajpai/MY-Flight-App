@@ -5,6 +5,7 @@ import { Flight } from '../Models/Flight';
 import { UserModel } from '../Models/UserModel';
 import { flightService } from '../service/flight.service';
 import { DatePipe } from '@angular/common';
+import { Search } from '../Models/Search';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit {
   departing = new Date();
   currentDate = new Date();
   returningFlag:boolean=false;
+
 
   //Variables for ngModule
   flyingFrom:any;
@@ -53,7 +55,7 @@ export class HomeComponent implements OnInit {
     // console.log(this.flightservice.getAllFlight.subscribe({
     //   res
     // }));
-    this.flightservice.getAllFlight()
+    this.flightservice.getAllFlight(this.homeForm)
     .subscribe((res:any )=>{
       console.log(res);
 

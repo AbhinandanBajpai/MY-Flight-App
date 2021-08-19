@@ -25,7 +25,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { CouponComponent } from './coupon/coupon.component';
 import { DatePipe } from '@angular/common';
 import { TicketHistoryComponent } from './user/components/ticket-history/ticket-history.component';
-
+// import {MatDialogModule} from '@angular/material/dialog';
 const routes:Routes=[
   // {
   //   path:"**",
@@ -119,6 +119,7 @@ const routes:Routes=[
     CouponComponent,
     TicketHistoryComponent
   ],
+  entryComponents:[TicketbookingComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),

@@ -3,7 +3,7 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { flightService } from 'src/app/service/flight.service';
-import { TicketHistory } from 'src/app/Models/ticketHistory';
+import { TicketHistory } from 'src/app/Models/TicketHistory';
 import { from } from 'rxjs';
 import { Router } from '@angular/router';
 

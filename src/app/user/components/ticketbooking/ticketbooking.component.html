@@ -1,6 +1,8 @@
 <div style="margin-right: 400px;  border: 1px solid green;
 
 ">
+<!-- *ngIf="downloadableTicket" -->
+<input  (click)="onGoTicketHistory()"  type="submit" value="Ticket History" style="background-color: red;" class="btn btn-danger">
 <h1><i><span style="text-align: center; margin-left: 500px;">Welcome : {{name}}</span></i>
 </h1>
 
@@ -181,4 +183,4 @@
 <input *ngIf="downloadableTicket" (click)="download()" type="submit" value="Download Ticket" class="btn">
 <input *ngIf="downloadableTicket" (click)="onCancel()" type="submit" value="Cancel Ticket" style="background-color: red;" class="btn btn-danger">
 <input *ngIf="downloadableTicket"  (click)="onGoTicketHistory()" type="submit" value="Ticket History" style="background-color: red;" class="btn btn-danger">
-<!-- [routerLink]="['/','ticketbook','/ticketHistory']" -->
+<!-- [routerLink]="['/','ticketbook','/ticketHistory']"  (click)="onGoTicketHistory()"-->

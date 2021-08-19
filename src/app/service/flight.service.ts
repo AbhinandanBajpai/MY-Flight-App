@@ -2,7 +2,8 @@ import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CouponModel } from '../Models/CouponModel';
 import { Flight } from '../Models/Flight';
-import { TicketHistory } from '../Models/ticketHistory';
+import { Search } from '../Models/Search';
+import { TicketHistory } from '../Models/TicketHistory';
 import { UserModel } from '../Models/UserModel';
 
 @Injectable({"providedIn":"root"})
@@ -12,14 +13,18 @@ export class flightService{
     urlUsers:string='http://localhost:3000/users';
     urlcoupon:string='http://localhost:3000/coupons';
     urlTicketHistory:string="http://localhost:3000/tickethistory";
+
+    urlflightSearch:String="http://localhost:8989/flightList/search";
     constructor(private httpClient:HttpClient){}
 
     saveFlight(flight:Flight){
         return this.httpClient.post(this.url,flight);
     }
 
-    getAllFlight(){
-        return this.httpClient.get(this.url);
+    getAllFlight(search:Search){
+        // return this.httpClient.get(this.url);
+        // return this.httpClient.get("http://localhost:8989/flightList"+"/search");
+        return this.httpClient.post("http://localhost:64521/search", Search);
     }
 
     deleteFlight(id:number){
@@ -42,7 +47,8 @@ export class flightService{
     }
 
     userSignUp(user:UserModel){
-        return this.httpClient.post(this.urlUsers,user);
+        // return this.httpClient.post(this.urlUsers,user);
+        return this.httpClient.post("localhost:2020/api/auth/signup",user);
     }
 
     //coupon
@@ -63,4 +69,21 @@ export class flightService{
         return this.httpClient.get(this.urlTicketHistory);
     }
 
-}
+
+    updateTicket(ticket:TicketHistory) {
+        return this.httpClient.put(this.url + "/" + ticket.id, ticket);
+    }
+
+
+
+} 
+
+//   modifyTicketHistory(id:number, ticketHistory:TicketHistoryPage){
+//       return this.httpClient.put(this.urlTicketHistory+'/'+id, ticketHistory);
+//   }
+
+//   getTicketHistoryById(id:number){
+//       return this.httpClient.get(this.urlTicketHistory+'/'+id);
+//   }
+
+//}

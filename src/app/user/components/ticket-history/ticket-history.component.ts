@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TicketHistory } from 'src/app/Models/ticketHistory';
+import { TicketHistory } from 'src/app/Models/TicketHistory';
 import { flightService } from 'src/app/service/flight.service';
 
 @Component({
@@ -15,22 +15,34 @@ export class TicketHistoryComponent implements OnInit {
   th:TicketHistory[]=[];
   constructor(private flightService:flightService) { 
 
-    this.flightService.getTicketHistory().subscribe((res:any)=>{
-      console.log(res);
-      this.th=res;
-    });
+    this.showTicketHistory();
 
     this.emailloggedIn =localStorage.getItem('email') || '';
     console.log()
   }
 
+  showTicketHistory(){
+    this.flightService.getTicketHistory().subscribe((res:any)=>{
+      console.log(res);
+      this.th=res;
+    });
+  }
+
   ngOnInit(): void {
   }
 
-  onCancel(){
+  onCancel(ticket:TicketHistory){
     this.cancilFlag=true;
-    
+    ticket.statue="cancelled";
+    this.flightService.updateTicket(ticket).subscribe((res:any)=>{
+      this.showTicketHistory();
+    })
 
   }
+
+  // openDialog(){
+
+  //   this.dialog.open(TicketHistoryComponent);
+  // }
 
 }
